@@ -1,5 +1,5 @@
 import discord
-from decouple import config
+import os
 
 bot = discord.Bot()
 bot_guilds = []
@@ -13,4 +13,4 @@ async def on_ready():
 async def ping(ctx):
     await ctx.respond('pong')
 
-bot.run(config("BOT_TOKEN"))
+bot.run(os.getenv("BOT_TOKEN"))
