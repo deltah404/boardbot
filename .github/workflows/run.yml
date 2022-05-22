@@ -6,9 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: gabrielfalcao/pyenv-action@v7
-          with:
-            default: 3.9
-            command: pip install -U pip
+      with:
+        default: 3.9
+        command: pip install -U pip
 
       - name: create environment
         run: pyenv local 3.9 && python -mvenv .venv386
