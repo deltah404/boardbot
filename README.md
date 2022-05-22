@@ -8,4 +8,4 @@
 
 - [x] Do some basic set up work for the bot
 - [x] Create a test command
-- [] Add Tic-Tac-Toe game
+- [ ] Add Tic-Tac-Toe game
