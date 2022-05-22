@@ -1,16 +1,16 @@
 import discord
 import os
+from decouple import config
+from discord.ext import commands
 
 bot = discord.Bot()
-bot_guilds = []
 
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user}')
-    bot_guilds = [guild.id for guild in bot.guilds]
-
-@bot.slash_command(guild_ids = bot_guilds)
+    print(':)')
+    
+@bot.slash_command(guild_ids=[977514545746685992])
 async def ping(ctx):
     await ctx.respond('pong')
 
-bot.run(os.getenv("BOT_TOKEN"))
+bot.run(os.getenv("BOT_TOKEN") or config("BOT_TOKEN"))
