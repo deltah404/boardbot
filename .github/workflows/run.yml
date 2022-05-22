@@ -1,0 +1,24 @@
+name: run
+on: [push]
+jobs:
+  start_bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: gabrielfalcao/pyenv-action@v7
+          with:
+            default: 3.9
+            command: pip install -U pip
+
+      - name: create environment
+        run: pyenv local 3.9 && python -mvenv .venv386
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt --upgrade pip
+
+      - name: setup pyenv
+        id: pyenv_installation
+        uses: "gabrielfalcao/pyenv-action@v7"
+      
+      - name: run bot
+        run: python3 main.py
