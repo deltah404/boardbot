@@ -10,10 +10,9 @@ jobs:
           python-version: '3.9'
       - name: auto requirements package
         run: pip3 install pipreqs && pipreqs ./ && python3 -m pip install -r requirements.txt
-
       - name: install pycord
         run: git clone https://github.com/Pycord-Development/pycord && pip3 install -U ./pycord
       - name: boot main file
         run: python3 main.py
         env: 
-          BOT_TOKEN: {{ secrets.BOT_TOKEN }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
