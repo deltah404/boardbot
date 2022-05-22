@@ -3,12 +3,13 @@ import os
 from decouple import config
 
 bot = discord.Bot()
+sc_guilds = [977514545746685992]
 
 @bot.event
 async def on_ready():
     print(':)')
     
-@bot.slash_command(guild_ids=[977514545746685992])
+@bot.slash_command(guild_ids=sc_guilds)
 async def ping(ctx):
     await ctx.respond('pong')
 
