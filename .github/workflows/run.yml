@@ -8,11 +8,11 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: '3.9'
+        env: 
+          BOT_TOKEN: {{ secrets.BOT_TOKEN }}
       - run: pip3 install pipreqs
       - run: pipreqs ./
       - run: python3 -m pip install -r requirements.txt
       - run: git clone https://github.com/Pycord-Development/pycord
       - run: pip3 install -U ./pycord
       - run: python3 main.py
-        env: 
-          BOT_TOKEN: {{ secrets.BOT_TOKEN }}
