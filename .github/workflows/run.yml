@@ -10,5 +10,5 @@ jobs:
           python-version: '3.9'
       - run: pip3 install pipreqs
       - run: pipreqs ./
-      - run: python3 -m pip install -r -U requirements.txt
+      - run: python3 -m pip install -r requirements.txt
       - run: python3 main.py
