@@ -15,4 +15,7 @@ jobs:
       - run: python3 -m pip install -r requirements.txt
       - run: git clone https://github.com/Pycord-Development/pycord
       - run: pip3 install -U ./pycord
-      - run: python3 main.py
+      - name: boot main file
+        run: python3 main.py
+        env: 
+          BOT_TOKEN: {{ secrets.BOT_TOKEN }}
