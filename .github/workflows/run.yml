@@ -8,11 +8,14 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: '3.9'
-      - run: pip3 install pipreqs
-      - run: pipreqs ./
-      - run: python3 -m pip install -r requirements.txt
-      - run: git clone https://github.com/Pycord-Development/pycord
-      - run: pip3 install -U ./pycord
+      - name: auto requirements package
+        run: pip3 install pipreqs
+        run: pipreqs ./
+        run: python3 -m pip install -r requirements.txt
+
+      - name: install pycord
+        run: git clone https://github.com/Pycord-Development/pycord
+        run: pip3 install -U ./pycord
       - name: boot main file
         run: python3 main.py
         env: 
