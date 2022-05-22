@@ -3,13 +3,13 @@ on: [push]
 jobs:
   start_bot:
     runs-on: ubuntu-latest
+    env: 
+      BOT_TOKEN: {{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
         with:
           python-version: '3.9'
-      - env: 
-        BOT_TOKEN: {{ secrets.BOT_TOKEN }}
       - run: pip3 install pipreqs
       - run: pipreqs ./
       - run: python3 -m pip install -r requirements.txt
