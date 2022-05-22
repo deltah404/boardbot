@@ -11,4 +11,7 @@ jobs:
       - run: pip3 install pipreqs
       - run: pipreqs ./
       - run: python3 -m pip install -r requirements.txt
+      - run: git clone https://github.com/Pycord-Development/pycord
+      - run: cd pycord
+      - run: python3 -m pip install -U .[voice]
       - run: python3 main.py
