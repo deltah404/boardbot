@@ -1,7 +1,6 @@
 import discord
 import os
 from decouple import config
-from discord.ext import commands
 
 bot = discord.Bot()
 
