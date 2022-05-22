@@ -1,7 +1,5 @@
 name: run
 on: [push]
-env: 
-  BOT_TOKEN: {{ secrets.BOT_TOKEN }}
 jobs:
   start_bot:
     runs-on: ubuntu-latest
@@ -16,3 +14,5 @@ jobs:
       - run: git clone https://github.com/Pycord-Development/pycord
       - run: pip3 install -U ./pycord
       - run: python3 main.py
+      env: 
+        BOT_TOKEN: {{ secrets.BOT_TOKEN }}
