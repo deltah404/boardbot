@@ -9,8 +9,8 @@ sc_guilds = [977514545746685992]
 async def on_ready():
     print(':)')
     
-@bot.slash_command(guild_ids=sc_guilds)
+@bot.slash_command(name='test', guild_ids=sc_guilds)
 async def ping(ctx):
-    await ctx.respond('pong')
+    await ctx.respond(f'yo {ctx.author.mention} your bot works')
 
 bot.run(os.getenv("BOT_TOKEN") or config("BOT_TOKEN"))
