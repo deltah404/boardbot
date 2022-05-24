@@ -1,7 +1,5 @@
 import discord
 import os
-import random
-
 try:
     from decouple import config   # for canary version token
 except ModuleNotFoundError:
@@ -18,8 +16,8 @@ async def on_ready():
 async def ping(ctx):
     await ctx.respond(f'yo {ctx.author.mention} your bot works')
 
-@bot.slash_command(guild_ids=sc_guilds)
-async def coinflip(ctx):
-    await ctx.respond(f':coin: It\'s {random.choice(["heads","tails"])}!')
+for module in os.listdir('./cogs'):
+    if module.endswith('.py'):
+        bot.load_extension(f'cogs.{module[:-3]}')
 
 bot.run(os.getenv("BOT_TOKEN") or config("BOT_TOKEN"))
