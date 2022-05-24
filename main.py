@@ -1,6 +1,10 @@
 import discord
 import os
-from decouple import config
+
+try:
+    from decouple import config   # for canary version token
+except ModuleNotFoundError:
+    pass                          # not necessary for public version
 
 bot = discord.Bot()
 sc_guilds = [977514545746685992]
