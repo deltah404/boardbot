@@ -12,9 +12,8 @@ bot = discord.Bot()
 with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
-try:
-    bot_token = os.environ.get("BOT_TOKEN")
-except KeyError:
+bot_token = os.environ.get("BOT_TOKEN")
+if bot_token == None:
     bot_token = config("BOT_TOKEN")
     
 
