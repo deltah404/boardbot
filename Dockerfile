@@ -4,6 +4,8 @@ RUN pip3 freeze > requirements.txt
 
 RUN pip3 install -r requirements.txt
 
+RUN pip3 install python-gist
+
 RUN git clone https://github.com/Pycord-Development/pycord && pip3 install -U ./pycord
 
 COPY . .

@@ -1,2 +1,3 @@
 .env
 /disabled
+/__pycache__
