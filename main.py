@@ -10,10 +10,10 @@ bot = discord.Bot()
 with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
-if config("BOT_TOKEN", default=None) == None:
+if ".env" not in os.listdir("."):
     bot_token = os.getenv("BOT_TOKEN")
 else:
-    bot_token = config("BOT_TOKEN")
+    bot_token = config("BOT_TOKEN")   
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):
