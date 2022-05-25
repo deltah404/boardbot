@@ -8,12 +8,12 @@ try:
 except ModuleNotFoundError:
     pass                                               # not necessary for public version
 
+load_dotenv()
+bot_token = os.getenv("BOT_TOKEN")
+
 bot = discord.Bot()
 with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
-
-load_dotenv()
-bot_token = os.environ.get("BOT_TOKEN")
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):
