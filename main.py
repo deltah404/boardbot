@@ -14,12 +14,8 @@ with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
 try:
-    try:
-        print('Primary source')
-        bot_token = env_values["BOT_TOKEN"]
-    except KeyError:
-        print('Primary source failed, trying secondary source')
-        bot_token = os.environ.get("BOT_TOKEN")
+    print('Primary source')
+    bot_token = env_values["BOT_TOKEN"]
 except TypeError:
     bot_token = os.environ["BOT_TOKEN"]
     
