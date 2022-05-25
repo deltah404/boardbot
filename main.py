@@ -13,7 +13,7 @@ with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
 try:
-    bot_token = BOT_TOKEN
+    bot_token = BOT_TOKEN()
 except KeyError:
     bot_token = config("BOT_TOKEN")
     
