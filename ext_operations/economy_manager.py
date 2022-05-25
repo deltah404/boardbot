@@ -9,7 +9,7 @@ except ModuleNotFoundError:
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
 try:
-    gh_auth = os.environ["GH_AUTH"]
+    gh_auth = GH_AUTH
 except KeyError:
     gh_auth = config("GH_AUTH")
 
@@ -17,7 +17,7 @@ def get_economy():
     return json.loads(requests.get(f'https://api.github.com/gists/{gist_id}').json()['files']['boardbot_economy.json']['content'])
 
 
-def update_economy(updated_economy: list):
+def update_economy(updated_economy: list): 
     headers = {'Authorization': f'token {gh_auth}'}
     r = requests.patch(f'https://api.github.com/gists/{gist_id}', json={'files': {
                        'boardbot_economy.json': {"content": json.dumps(updated_economy)}}}, headers=headers)
