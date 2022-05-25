@@ -12,7 +12,7 @@ load_dotenv()
 try:
     bot_token = config("BOT_TOKEN", config("C_BOT_TOKEN"))
 except UndefinedValueError:
-    bot_token = config("C_BOT_TOKEN", config("C_BOT_TOKEN"))
+    bot_token = config("BOT_TOKEN")
 
 bot = discord.Bot()
 with open('admin.json') as fp:
