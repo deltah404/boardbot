@@ -12,6 +12,4 @@ for module in os.listdir('./cogs'):
     if module.endswith('.py'):
         bot.load_extension(f'cogs.{module[:-3]}')
 
-try: bot_token = config("BOT_TOKEN")
-except: bot_token = os.getenv("BOT_TOKEN")
-bot.run(bot_token)
+bot.run(os.getenv("BOT_TOKEN") or config("BOT_TOKEN"))
