@@ -19,5 +19,3 @@ EXPOSE 1337
 USER 1000
 
 RUN python3 main.py
-
-CMD ["/bin/sh", "-c", "while true; do echo Done Deploying; sleep 3600; done"]
