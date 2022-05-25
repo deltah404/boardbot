@@ -9,7 +9,7 @@ except ModuleNotFoundError:
     pass                                               # not necessary for public version
 
 load_dotenv()
-bot_token = os.getenv("BOT_TOKEN", os.getenv("C_BOT_TOKEN"))
+bot_token = config("BOT_TOKEN", config("C_BOT_TOKEN"))
 
 bot = discord.Bot()
 with open('admin.json') as fp:
@@ -19,4 +19,4 @@ for module in os.listdir('./cogs'):
     if module.endswith('.py'):
         bot.load_extension(f'cogs.{module[:-3]}')
 
-bot.run(str(bot_token))
+bot.run(bot_token)
