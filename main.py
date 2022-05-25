@@ -2,6 +2,7 @@ from email.policy import default
 import discord
 import os
 import json
+from dotenv import load_dotenv
 try:
     from decouple import config   # for canary version token
 except ModuleNotFoundError:
@@ -14,7 +15,8 @@ with open('admin.json') as fp:
 try:
     bot_token = BOT_TOKEN 
 except NameError:
-    bot_token = config("BOT_TOKEN")
+    load_dotenv()
+    bot_token = os.getenv("BOT_TOKEN")
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):

@@ -8,6 +8,8 @@ RUN pip3 install python-gist
 
 RUN pip3 install python-decouple
 
+RUN pip3 install python-dotenv
+
 RUN git clone https://github.com/Pycord-Development/pycord && pip3 install -U ./pycord
 
 COPY . .
