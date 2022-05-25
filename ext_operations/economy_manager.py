@@ -2,6 +2,7 @@ import json
 import requests
 import os
 import dotenv
+from dotenv import load_dotenv
 try:
     from decouple import config, UndefinedValueError
 except ModuleNotFoundError:
@@ -10,6 +11,7 @@ except ModuleNotFoundError:
 env_values = dict(dotenv.dotenv_values(".env"))
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
+load_dotenv
 gh_auth = os.getenv("GH_AUTH")
 
 def get_economy():
