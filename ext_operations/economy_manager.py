@@ -8,8 +8,9 @@ except ModuleNotFoundError:
 
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
-gh_auth = config("GH_AUTH")
-if not gh_auth:
+try:
+    gh_auth = config("GH_AUTH")
+except UndefinedValueError:
     gh_auth = os.environ["GH_AUTH"]
 
 def get_economy():
