@@ -1,3 +1,4 @@
+from email.policy import default
 import discord
 import os
 import json
@@ -13,7 +14,7 @@ with open('admin.json') as fp:
 if ".env" not in os.listdir("."):
     bot_token = os.getenv("BOT_TOKEN")
 else:
-    bot_token = config("BOT_TOKEN")   
+    bot_token = config("BOT_TOKEN", default=None)   
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):
