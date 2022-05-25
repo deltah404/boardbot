@@ -8,6 +8,7 @@ except ModuleNotFoundError:
 
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
+
 if config("GH_AUTH", default=None) == None:
     gh_auth = os.getenv("GH_AUTH")
 else:

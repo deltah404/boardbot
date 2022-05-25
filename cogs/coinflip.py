@@ -1,9 +1,11 @@
 import discord
 import random
+import json
 from ext_operations import economy_manager as ecom
-from main import sc_guilds
 from discord.ext import commands
 
+with open('admin.json') as fp:
+    sc_guilds = json.load(fp)["slash_command_guilds"]
 
 def flip_coin(guess):
     result = random.choice(["Heads", "Tails"])
