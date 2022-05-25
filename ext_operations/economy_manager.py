@@ -6,7 +6,7 @@ try:
 except ModuleNotFoundError:
     pass
 
-token = config("GH_AUTH") or os.getenv("GH_AUTH")
+token = os.getenv("GH_AUTH") or config("GH_AUTH")
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
 def get_economy():
