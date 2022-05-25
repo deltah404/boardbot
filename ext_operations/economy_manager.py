@@ -11,10 +11,13 @@ env_values = dict(dotenv.dotenv_values(".env"))
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
 try:
-    print('Primary source')
-    gh_auth = env_values["GH_AUTH"]
-except KeyError:
-    print('Primary source failed, trying secondary source')
+    try:
+        print('Primary source')
+        gh_auth = env_values["GH_AUTH"]
+    except KeyError:
+        print('Primary source failed, trying secondary source')
+        gh_auth = os.environ.get("GH_AUTH")
+except TypeError:
     gh_auth = os.environ.get("GH_AUTH")
 
 def get_economy():
