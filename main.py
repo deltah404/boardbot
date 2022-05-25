@@ -2,7 +2,7 @@ from email.policy import default
 import discord
 import os
 import json
-import dotenv
+from dotenv import load_dotenv
 try:
     from decouple import config, UndefinedValueError   # for canary version token
 except ModuleNotFoundError:
@@ -12,6 +12,7 @@ bot = discord.Bot()
 with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
+load_dotenv()
 bot_token = config("BOT_TOKEN")
 
 for module in os.listdir('./cogs'):
