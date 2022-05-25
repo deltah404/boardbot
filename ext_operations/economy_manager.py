@@ -12,6 +12,6 @@ def get_economy():
     return json.loads(requests.get(f'https://api.github.com/gists/{gist_id}').json()['files']['boardbot_economy.json']['content'])
 
 def update_economy(updated_economy: list):
-    headers = {'Authorization': f'token {os.getenv("GH_AUTH") or config("GH_AUTH")}'}
+    headers = {'Authorization': f'token {config("GH_AUTH") or os.getenv("GH_AUTH")}'}
     r = requests.patch(f'https://api.github.com/gists/{gist_id}', json={'files':{'boardbot_economy.json':{"content":json.dumps(updated_economy)}}}, headers=headers)
     print(r.json())
