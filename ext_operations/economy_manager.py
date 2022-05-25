@@ -1,7 +1,10 @@
 import json
 import requests
 import os
-from decouple import config
+try:
+    from decouple import config
+except:
+    pass
 
 token = os.getenv("GH_AUTH") or config("GH_AUTH")
 gist_id = "214ea2b907d32934cb080917af3b2674"
