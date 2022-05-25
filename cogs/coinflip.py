@@ -8,8 +8,8 @@ from discord.ext import commands
 
 
 def flip_coin(guess):
-    result = random.choice(["heads", "tails"])
-    if result == guess:
+    result = random.choice(["Heads", "Tails"])
+    if guess == result:
         return True
     else:
         return False
@@ -36,7 +36,9 @@ class Coinflip(commands.Cog):
 
             async def select_callback(self, select, interaction):
                 select.disabled = True
+                select.placeholder = select.values[0].upper() + "!"
                 await interaction.response.edit_message(view=self)
+
                 if flip_coin(select.values[0]):
                     await ctx.respond(f':coin: Sweet! You won {bet}!')
                 else:
