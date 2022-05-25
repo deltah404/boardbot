@@ -11,7 +11,7 @@ except ModuleNotFoundError:
 env_values = dict(dotenv.dotenv_values(".env"))
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
-load_dotenv
+load_dotenv()
 gh_auth = os.getenv("GH_AUTH")
 
 def get_economy():
