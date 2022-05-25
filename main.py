@@ -1,4 +1,3 @@
-from email.policy import default
 import discord
 import os
 import json
