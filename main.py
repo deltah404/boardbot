@@ -8,6 +8,7 @@ try:
 except ModuleNotFoundError:
     pass                                               # not necessary for public version
 
+load_dotenv()
 bot_token = os.getenv("BOT_TOKEN", os.getenv("C_BOT_TOKEN"))
 
 bot = discord.Bot()
