@@ -8,9 +8,9 @@ except ModuleNotFoundError:
 
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
-try:
+if not os.getenv("GH_AUTH"):
     gh_auth = config("GH_AUTH")
-except UndefinedValueError:
+else:
     gh_auth = os.getenv("GH_AUTH")
 
 
