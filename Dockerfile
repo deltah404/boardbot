@@ -16,4 +16,4 @@ EXPOSE 1337
 
 USER 1000
 
-CMD [ "python3", "./main.py" ]
+RUN python3 main.py
