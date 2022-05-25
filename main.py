@@ -19,5 +19,4 @@ for module in os.listdir('./cogs'):
     if module.endswith('.py'):
         bot.load_extension(f'cogs.{module[:-3]}')
 
-#bot.run(bot_token)
-print(bot_token)
+bot.run(bot_token)
