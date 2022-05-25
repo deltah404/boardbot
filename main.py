@@ -9,7 +9,7 @@ except ModuleNotFoundError:
     pass                                               # not necessary for public version
 
 load_dotenv()
-bot_token = config("BOT_TOKEN", config("C_BOT_TOKEN"))
+bot_token = config("BOT_TOKEN", config("C_BOT_TOKEN")) or config("C_BOT_TOKEN", config("BOT_TOKEN"))
 
 bot = discord.Bot()
 with open('admin.json') as fp:
