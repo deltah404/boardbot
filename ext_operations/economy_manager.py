@@ -4,7 +4,7 @@ import os
 try:
     from decouple import config
 except:
-    pass
+    def config(): return 0
 
 token = os.getenv("GH_AUTH") or config("GH_AUTH")
 gist_id = "214ea2b907d32934cb080917af3b2674"
