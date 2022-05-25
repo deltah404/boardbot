@@ -12,10 +12,7 @@ bot = discord.Bot()
 with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
-try:
-    bot_token = config("BOT_TOKEN")
-except UndefinedValueError:
-    bot_token = os.getenv("BOT_TOKEN")
+bot_token = config("BOT_TOKEN")
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):
