@@ -14,7 +14,7 @@ with open('admin.json') as fp:
 
 try:
     bot_token = config("BOT_TOKEN")
-except KeyError:
+except UndefinedValueError:
     bot_token = os.getenv("BOT_TOKEN")
 
 for module in os.listdir('./cogs'):
