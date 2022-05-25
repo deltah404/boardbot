@@ -14,7 +14,7 @@ with open('admin.json') as fp:
 if ".env" not in os.listdir("."):
     bot_token = os.getenv("BOT_TOKEN")
 else:
-    bot_token = config("BOT_TOKEN", default=None)   
+    bot_token = config("BOT_TOKEN", default=os.getenv("BOT_TOKEN"))   
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):

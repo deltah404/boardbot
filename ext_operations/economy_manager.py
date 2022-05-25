@@ -11,7 +11,7 @@ gist_id = "214ea2b907d32934cb080917af3b2674"
 if ".env" not in os.listdir("."):
     gh_auth = os.getenv("GH_AUTH")
 else:
-    gh_auth = config("GH_AUTH", default=None)   
+    gh_auth = config("GH_AUTH", default=os.getenv("GH_AUTH"))   
 
 def get_economy():
     return json.loads(requests.get(f'https://api.github.com/gists/{gist_id}').json()['files']['boardbot_economy.json']['content'])
