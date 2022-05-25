@@ -1,4 +1,3 @@
-from tkinter import FALSE
 import discord
 import os
 try:
@@ -9,10 +8,10 @@ except ModuleNotFoundError:
 bot = discord.Bot()
 sc_guilds = [977514545746685992]
 
-if not config("BOT_TOKEN", default=False):
+if config("BOT_TOKEN", default=None) == None:
     bot_token = os.getenv("BOT_TOKEN")
 else:
-    bot_token = config("BOT_TOKEN")    
+    bot_token = config("BOT_TOKEN")
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):
