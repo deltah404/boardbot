@@ -13,7 +13,7 @@ with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
 load_dotenv()
-bot_token = config("BOT_TOKEN")
+bot_token = os.environ["BOT_TOKEN"]
 
 for module in os.listdir('./cogs'):
     if module.endswith('.py'):
