@@ -12,7 +12,7 @@ env_values = dict(dotenv.dotenv_values(".env"))
 gist_id = "214ea2b907d32934cb080917af3b2674"
 
 load_dotenv()
-gh_auth = os.getenv("GH_AUTH", env_values["C_GH_AUTH"])
+gh_auth = os.getenv("GH_AUTH", os.getenv("C_GH_AUTH"))
 
 def get_economy():
     return json.loads(requests.get(f'https://api.github.com/gists/{gist_id}').json()['files']['boardbot_economy.json']['content'])
