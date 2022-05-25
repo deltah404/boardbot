@@ -18,7 +18,7 @@ try:
         print('Primary source failed, trying secondary source')
         gh_auth = os.environ.get("GH_AUTH")
 except TypeError:
-    gh_auth = os.environ.get("GH_AUTH")
+    gh_auth = os.getenv("GH_AUTH")
 
 def get_economy():
     return json.loads(requests.get(f'https://api.github.com/gists/{gist_id}').json()['files']['boardbot_economy.json']['content'])
