@@ -21,7 +21,7 @@ try:
         print('Primary source failed, trying secondary source')
         bot_token = os.environ.get("BOT_TOKEN")
 except TypeError:
-    bot_token = os.getenv("BOT_TOKEN")
+    bot_token = os.environ["BOT_TOKEN"]
     
 
 for module in os.listdir('./cogs'):
