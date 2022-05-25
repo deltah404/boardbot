@@ -1,7 +1,5 @@
 import discord
 import random
-
-from numpy import flip
 from ext_operations import economy_manager as ecom
 from main import sc_guilds
 from discord.ext import commands
