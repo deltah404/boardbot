@@ -27,6 +27,7 @@ class Economy(commands.Cog):
         await ctx.respond(embed=embed)
 
     @discord.slash_command()
+    @discord.guild_only()
     async def give(self, ctx, user: discord.Option(discord.Member, "User", required=True), amount: int):
         e = ecom.get_economy()
         if str(ctx.author.id) not in e["users"].keys():
