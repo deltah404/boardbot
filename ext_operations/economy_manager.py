@@ -9,7 +9,6 @@ except ModuleNotFoundError:
     pass
 
 env_values = dict(dotenv.dotenv_values(".env"))
-gist_id = "214ea2b907d32934cb080917af3b2674"
 
 load_dotenv()
 gh_auth = os.getenv("GH_AUTH", os.getenv("C_GH_AUTH"))
@@ -21,7 +20,7 @@ def get_economy():
 
 def update_economy(updated_economy: list):
     headers = {'Authorization': f'token {gh_auth}'}
-    r = requests.patch(f'https://api.github.com/gists/{gist_id}', json={'files': {
+    r = requests.patch(f'https://api.github.com/gists/214ea2b907d32934cb080917af3b2674', json={'files': {
                        'boardbot_economy.json': {"content": json.dumps(updated_economy, indent=4)}}}, headers=headers)
 
 
@@ -31,3 +30,4 @@ def new_account(user_id):
     e = get_economy()
     e["users"][str(user_id)] = starting_balance
     update_economy(e)
+    return starting_balance

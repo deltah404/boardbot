@@ -17,6 +17,7 @@ bot = discord.Bot()
 with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
 
+
 @bot.event
 async def on_ready():
     print(f'logged in as {bot.user}')

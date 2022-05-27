@@ -24,8 +24,8 @@ class Coinflip(commands.Cog):
     @discord.slash_command(guild_ids=sc_guilds)
     async def coinflip(self, ctx, bet: discord.Option(int)):
         if bet <= 0:
-            return await ctx.respond(":coin: You have to bet at least 1")
-        conf = await ctx.respond(":coin: Two seconds...")
+            return await ctx.respond(":coin: You have to bet at least C1")
+        conf = await ctx.respond(":coin: Hang on...")
 
         class MyView(discord.ui.View):
             @discord.ui.select(
@@ -43,25 +43,24 @@ class Coinflip(commands.Cog):
                 if interaction.user != ctx.author:
                     return
                 select.disabled = True
-                select.placeholder = select.values[0] + "!"
+                select.placeholder = select.values[0] + '!'
                 await interaction.response.edit_message(view=self)
 
                 if flip_coin(select.values[0]):
-                    await ctx.respond(f':coin: Sweet! You won {bet}!')
+                    await ctx.respond(f':coin: Sweet! You won :moneybag: **{bet}**!')
                     e = ecom.get_economy()
                     e["users"][str(ctx.author.id)] += int(bet)
                     ecom.update_economy(e)
                 else:
-                    await ctx.respond(f':coin: Bad luck - you lost {bet}...')
+                    await ctx.respond(f':coin: Bad luck - you lost :moneybag: **{bet}**...')
                     e = ecom.get_economy()
                     e["users"][str(ctx.author.id)] -= int(bet)
                     ecom.update_economy(e)
 
         if str(ctx.author.id) not in ecom.get_economy()["users"].keys():
             ecom.new_account(ctx.author.id)
-            sleep(1)
         if ecom.get_economy()["users"][str(ctx.author.id)] < int(bet):
-            return await conf.edit(content=f':coin: You don\'t have enough money!')
+            return await conf.edit(content=f':x: You don\'t have enough money!')
         else:
             await conf.delete()
             await ctx.respond(view=MyView())
