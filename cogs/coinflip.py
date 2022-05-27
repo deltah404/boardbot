@@ -24,7 +24,7 @@ class Coinflip(commands.Cog):
     @discord.slash_command(guild_ids=sc_guilds)
     async def coinflip(self, ctx, bet: discord.Option(int)):
         if bet <= 0:
-            return await ctx.respond(":coin: You have to bet at least C1")
+            return await ctx.respond(":coin: You have to bet at least :moneybag:1")
         conf = await ctx.respond(":coin: Hang on...")
 
         class MyView(discord.ui.View):
@@ -47,12 +47,12 @@ class Coinflip(commands.Cog):
                 await interaction.response.edit_message(view=self)
 
                 if flip_coin(select.values[0]):
-                    await ctx.respond(f':coin: Sweet! You won :moneybag: **{bet}**!')
+                    await ctx.respond(f':coin: Sweet! You won :moneybag:**{bet}**!')
                     e = ecom.get_economy()
                     e["users"][str(ctx.author.id)] += int(bet)
                     ecom.update_economy(e)
                 else:
-                    await ctx.respond(f':coin: Bad luck - you lost :moneybag: **{bet}**...')
+                    await ctx.respond(f':coin: Bad luck - you lost :moneybag:**{bet}**...')
                     e = ecom.get_economy()
                     e["users"][str(ctx.author.id)] -= int(bet)
                     ecom.update_economy(e)

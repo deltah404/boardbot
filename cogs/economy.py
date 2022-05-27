@@ -23,7 +23,7 @@ class Economy(commands.Cog):
 
         embed = discord.Embed(title=f"{user.name}'s Balance")
         embed.add_field(
-            name="Coins", value=f':moneybag: **{balance}**', inline=False)
+            name="Coins", value=f':moneybag:**{balance}**', inline=False)
         await ctx.respond(embed=embed)
 
     @discord.slash_command()
@@ -46,7 +46,7 @@ class Economy(commands.Cog):
                 e = ecom.get_economy()
             e["users"][str(user.id)] += amount
             ecom.update_economy(e)
-            return await ctx.channel.send(f'Transferred :moneybag: from {ctx.author.mention} to {user.mention}')
+            return await ctx.respond(f'Transferred :moneybag:**{amount}** from {ctx.author.mention} to {user.mention}')
 
 
 def setup(bot):
