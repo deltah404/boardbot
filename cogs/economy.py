@@ -16,7 +16,7 @@ class Economy(commands.Cog):
         except KeyError:
             balance = 0
 
-        embed = discord.Embed(title=f"{ctx.author.name}'s Balance")
+        embed = discord.Embed(title=f"{user.name}'s Balance")
         embed.add_field(name="Coins", value=f':coin: {balance}', inline=False)
         await ctx.respond(embed=embed)
 
