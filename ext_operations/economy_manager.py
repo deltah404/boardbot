@@ -22,7 +22,7 @@ def get_economy():
 def update_economy(updated_economy: list):
     headers = {'Authorization': f'token {gh_auth}'}
     r = requests.patch(f'https://api.github.com/gists/{gist_id}', json={'files': {
-                       'boardbot_economy.json': {"content": json.dumps(updated_economy)}}}, headers=headers)
+                       'boardbot_economy.json': {"content": json.dumps(updated_economy, indent=4)}}}, headers=headers)
 
 
 def new_account(user_id):
