@@ -23,7 +23,9 @@ class Coinflip(commands.Cog):
 
     @discord.slash_command(guild_ids=sc_guilds)
     async def coinflip(self, ctx, bet: discord.Option(int)):
-        conf = await ctx.channel.send(":coin: Two seconds...")
+        if bet <= 0:
+            return await ctx.respond(":coin: You have to bet at least 1")
+        conf = await ctx.respond(":coin: Two seconds...")
 
         class MyView(discord.ui.View):
             @discord.ui.select(
