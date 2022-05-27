@@ -38,6 +38,8 @@ class Coinflip(commands.Cog):
                 ]
             )
             async def select_callback(self, select, interaction):
+                if interaction.user != ctx.author:
+                    return
                 select.disabled = True
                 select.placeholder = select.values[0] + "!"
                 await interaction.response.edit_message(view=self)
