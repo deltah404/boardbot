@@ -25,7 +25,7 @@ class Coinflip(commands.Cog):
     async def coinflip(self, ctx, bet: discord.Option(int)):
         if bet <= 0:
             return await ctx.respond(":coin: You have to bet at least :moneybag:1")
-        conf = await ctx.respond(":coin: Hang on...")
+        conf = await ctx.channel.send(":coin: Hang on...")
 
         class MyView(discord.ui.View):
             @discord.ui.select(
