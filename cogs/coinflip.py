@@ -1,11 +1,13 @@
 import discord
 import random
 import json
+from time import sleep
 from ext_operations import economy_manager as ecom
 from discord.ext import commands
 
 with open('admin.json') as fp:
     sc_guilds = json.load(fp)["slash_command_guilds"]
+
 
 def flip_coin(guess):
     result = random.choice(["Heads", "Tails"])
@@ -20,7 +22,9 @@ class Coinflip(commands.Cog):
         self.bot = bot
 
     @discord.slash_command(guild_ids=sc_guilds)
-    async def coinflip(self, ctx, bet):
+    async def coinflip(self, ctx, bet: discord.Option(int)):
+        conf = await ctx.channel.send(":coin: Two seconds...")
+
         class MyView(discord.ui.View):
             @discord.ui.select(
                 placeholder="Make a guess:",
@@ -33,18 +37,31 @@ class Coinflip(commands.Cog):
                     )
                 ]
             )
-
             async def select_callback(self, select, interaction):
                 select.disabled = True
-                select.placeholder = select.values[0].upper() + "!"
+                select.placeholder = select.values[0] + "!"
                 await interaction.response.edit_message(view=self)
 
                 if flip_coin(select.values[0]):
                     await ctx.respond(f':coin: Sweet! You won {bet}!')
+                    e = ecom.get_economy()
+                    e["users"][str(ctx.author.id)] += int(bet)
+                    ecom.update_economy(e)
                 else:
                     await ctx.respond(f':coin: Bad luck - you lost {bet}...')
+                    e = ecom.get_economy()
+                    e["users"][str(ctx.author.id)] -= int(bet)
+                    ecom.update_economy(e)
 
-        await ctx.respond(view=MyView())
+        if str(ctx.author.id) not in ecom.get_economy()["users"].keys():
+            ecom.new_account(ctx.author.id)
+            sleep(1)
+        if ecom.get_economy()["users"][str(ctx.author.id)] < int(bet):
+            return await conf.edit(content=f':coin: You don\'t have enough money!')
+        else:
+            await conf.delete()
+            await ctx.respond(view=MyView())
+        ecom.get_economy()
 
 
 def setup(bot):

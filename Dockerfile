@@ -14,8 +14,8 @@ RUN git clone https://github.com/Pycord-Development/pycord && pip3 install -U ./
 
 COPY . .
 
-EXPOSE 1337
+EXPOSE 8080
 
 USER 1000
 
-RUN python3 main.py
+CMD ["python3", "main.py"]

@@ -1,3 +1,7 @@
 {
-    "slash_command_guilds": [977514545746685992]
+    "slash_command_guilds": [977514545746685992],
+
+    "economy": {
+        "starting_balance": 10
+    }
 }

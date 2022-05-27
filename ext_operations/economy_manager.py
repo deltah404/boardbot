@@ -14,12 +14,20 @@ gist_id = "214ea2b907d32934cb080917af3b2674"
 load_dotenv()
 gh_auth = os.getenv("GH_AUTH", os.getenv("C_GH_AUTH"))
 
+
 def get_economy():
-    return json.loads(requests.get(f'https://api.github.com/gists/{gist_id}').json()['files']['boardbot_economy.json']['content'])
+    return json.loads(requests.get(f'https://api.github.com/gists/214ea2b907d32934cb080917af3b2674', headers={"Authorization": f"token {gh_auth}"}).json()["files"]["boardbot_economy.json"]["content"])
 
 
-def update_economy(updated_economy: list): 
+def update_economy(updated_economy: list):
     headers = {'Authorization': f'token {gh_auth}'}
     r = requests.patch(f'https://api.github.com/gists/{gist_id}', json={'files': {
                        'boardbot_economy.json': {"content": json.dumps(updated_economy)}}}, headers=headers)
-    print(r.json())
+
+
+def new_account(user_id):
+    with open("admin.json") as fp:
+        starting_balance = json.load(fp)["economy"]["starting_balance"]
+    e = get_economy()
+    e["users"][str(user_id)] = starting_balance
+    update_economy(e)
